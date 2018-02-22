@@ -1,12 +1,16 @@
 <?php
+namespace Tests\Feature;
+
+use App\User;
+use TestCase;
 
 
-class ExampleTest extends FeatureTestCase
+class ExampleTest extends TestCase
 {
     /** @test */
     function test_basic_example()
     {
-        $user = factory(\App\User::class)->create([
+        $user = factory(User::class)->create([
             'name' => 'Jonathan Quintero',
             'email' => 'jonquintero@hotmail.com'
         ]);
