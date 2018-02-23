@@ -15,7 +15,7 @@ class CreatePostController extends Controller
     public function store(Request $request)
     {
          $post  = Post::create($request->all());
-
+        auth()->user()->posts()->save($post);
         return $post->title;
     }
 }
