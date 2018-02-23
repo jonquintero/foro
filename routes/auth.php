@@ -1,7 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ROXYJON
- * Date: 22/2/2018
- * Time: 8:53 PM
- */
+
+//Routes that require authentication.
+
+//Post
+Route::get('posts/create',[
+    'uses' => 'CreatePostController@create',
+    'as' => 'posts.create'
+]);
+
+Route::post('posts/create',[
+    'uses' => 'CreatePostController@store',
+    'as' => 'posts.store'
+]);

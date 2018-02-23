@@ -2,13 +2,14 @@
 
 namespace Tests\Feature;
 
+use FeatureTestCase;
 use TestCase;
 
-class CreatePostsTest extends TestCase
+class CreatePostsTest extends FeatureTestCase
 {
     /** @test */
 
-    public function test_a_user_create_a_post()
+    function test_a_user_create_a_post()
     {
         // Having
         $title = 'Esta es una pregunta';
@@ -34,7 +35,7 @@ class CreatePostsTest extends TestCase
 
     /** @test */
 
-    public function test_a_guest_user_tries_to_create_a_post()
+    function test_a_guest_user_tries_to_create_a_post()
     {
         // Having
         $title = 'Esta es una pregunta';
@@ -60,11 +61,24 @@ class CreatePostsTest extends TestCase
 
     /** @test */
 
-    public function test_creating_a_post_requires_authentication()
+    function test_creating_a_post_requires_authentication()
     {
         //When
 
         $this->visit(route('posts.create'))
             ->seePageIs(route('login'));
+    }
+
+    function test_create_post_form_validation()
+    {
+        $this->actingAs($this->defaultUser())
+            ->visit(route('posts.create'))
+            ->press('Publicar')
+            ->seePageIs(route('posts.create'))
+            ->seeErrors([
+                'title' => 'El campo título es obligatorio',
+                'content' => 'El campo contenido es obligatorio'
+            ]);
+
     }
 }
