@@ -29,6 +29,6 @@ class CreatePostsTest extends TestCase
            'pending' => true,
         ]);
         // Test a user is redirected to the posts details after creating it.
-        $this->seeInElement('h1', $title);
+        $this->see($title);
     }
 }
